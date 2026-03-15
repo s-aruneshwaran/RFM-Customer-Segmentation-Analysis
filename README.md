@@ -119,7 +119,7 @@ RFM-Customer-Segmentation-Analysis
 │   └── rfm_data.csv
 │
 ├── notebooks
-│   └── rfm_customer_segmentation.ipynb
+│   └── RFM_Analysis.ipynb
 │
 ├── images
 │   ├── segment_distribution.png
