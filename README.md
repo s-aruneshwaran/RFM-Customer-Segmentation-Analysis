@@ -1,125 +1,132 @@
-# ChatGPT Review Sentiment Analysis
+# RFM Customer Segmentation Analysis
 
 ## Project Overview
-This project analyzes user reviews of ChatGPT to understand customer sentiment, common feedback patterns, and overall product perception using Natural Language Processing (NLP) techniques.
+This project performs **RFM (Recency, Frequency, Monetary) Analysis** to segment customers based on their purchasing behavior. RFM analysis is a widely used customer analytics technique in marketing and retail to identify high-value customers and understand customer engagement.
 
-The analysis extracts insights from textual reviews and ratings to identify user satisfaction, common issues reported by users, and features that customers appreciate the most.
+By analyzing transaction data, the project classifies customers into segments such as **Champions, Potential Loyalists, At-Risk Customers, and Lost Customers**, helping businesses design targeted marketing strategies.
 
 ---
 
 ## Objectives
-- Perform sentiment analysis on user reviews
-- Identify common phrases in positive and negative feedback
-- Detect major issues reported by users
-- Analyze sentiment trends over time
-- Estimate customer loyalty using Net Promoter Score (NPS)
+
+- Calculate **Recency, Frequency, and Monetary values** for each customer
+- Generate **RFM scores** to measure customer engagement
+- Segment customers based on their purchasing behavior
+- Identify **high-value and at-risk customers**
+- Visualize customer segments and behavioral patterns
 
 ---
 
 ## Dataset
-The dataset contains user reviews of ChatGPT with the following fields:
 
-- **Review ID**
-- **Review Text**
-- **Ratings (1–5 stars)**
-- **Review Date**
+The dataset contains customer transaction information with the following fields:
+
+- **CustomerID** – Unique identifier for each customer
+- **PurchaseDate** – Date of purchase
+- **TransactionAmount** – Amount spent in the transaction
+- **ProductInformation** – Product details
+- **OrderID** – Order identifier
+- **Location** – Customer location
 
 ---
 
 ## Technologies Used
+
 - Python
 - Pandas
 - Plotly
-- Scikit-learn
-- TextBlob (for sentiment analysis)
+- Plotly Express
+- Data Visualization
+- Customer Analytics
 
 ---
 
 ## Methodology
 
-### 1. Data Cleaning
-- Checked for missing values in the dataset
-- Replaced missing review text with empty strings
+### 1. Data Preprocessing
+- Converted purchase date into datetime format
+- Cleaned and structured transaction data for analysis
 
-### 2. Sentiment Analysis
-- Applied polarity-based sentiment classification using **TextBlob**
-- Classified reviews into:
-  - Positive
-  - Neutral
-  - Negative
+### 2. RFM Metric Calculation
 
-### 3. Phrase Extraction
-- Used **CountVectorizer** to extract frequent bigrams and trigrams
-- Identified common phrases in positive and negative reviews
+**Recency**
+- Number of days since the customer’s last purchase
 
-### 4. User Problem Analysis
-Grouped negative phrases into broader problem categories such as:
+**Frequency**
+- Total number of purchases made by the customer
 
-- Incorrect answers
-- App performance issues
-- User interface problems
-- Missing or broken features
-- Poor response quality
+**Monetary**
+- Total amount spent by the customer
 
-### 5. Sentiment Trends Over Time
-- Converted review dates into time-series format
-- Analyzed how sentiment changed over time
+### 3. RFM Score Calculation
 
-### 6. Net Promoter Score (NPS)
-Customer loyalty was estimated using ratings:
+Each metric was assigned a score from **1 to 5** based on value ranges.
 
-- **Promoters:** 5-star ratings  
-- **Passives:** 4-star ratings  
-- **Detractors:** 3 stars and below  
+- **Recency Score** – Higher score for more recent purchases
+- **Frequency Score** – Higher score for frequent purchases
+- **Monetary Score** – Higher score for higher spending
 
-NPS was calculated using:
+The final **RFM Score** was calculated as:
 
-NPS = %Promoters − %Detractors
+RFM Score = Recency Score + Frequency Score + Monetary Score
 
 ---
 
-## Key Insights
+### 4. Customer Segmentation
 
-- The majority of reviews are **positive**, indicating strong user satisfaction.
-- Frequent positive phrases highlight the **usefulness and accuracy of the tool**.
-- Common negative feedback includes:
-  - incorrect answers
-  - performance issues
-  - missing features
-- Sentiment trends show consistent user engagement over time.
-- The calculated **Net Promoter Score (NPS) ≈ 64**, which indicates **excellent customer loyalty**.
+Customers were categorized into the following segments:
+
+| Segment | Description |
+|------|------|
+| Champions | Highly engaged customers with frequent purchases and high spending |
+| Potential Loyalists | Customers with strong engagement potential |
+| At Risk Customers | Customers whose engagement is declining |
+| Can't Lose | Previously valuable customers at risk of churn |
+| Lost | Customers with very low engagement |
 
 ---
 
 ## Visualizations
 
-The project includes several visualizations:
+The project includes several visual analytics:
 
-- Sentiment distribution of reviews
-- Most common positive phrases
-- Most common negative phrases
-- Major user problem categories
-- Sentiment trends over time
+- **RFM Value Segment Distribution**
+- **Treemap of Customer Segments**
+- **Distribution of RFM Scores for Champions**
+- **Correlation Heatmap of RFM Metrics**
+- **Segment Comparison Bar Charts**
+- **Average RFM Scores by Segment**
+
+These visualizations help understand **customer behavior patterns and segment characteristics**.
+
+---
+
+## Key Insights
+
+- **Champions segment** represents highly valuable customers with strong purchase frequency and spending behavior.
+- **Potential Loyalists** represent an opportunity for targeted marketing campaigns.
+- **At-risk and lost customers** highlight areas where retention strategies may be needed.
+- RFM segmentation enables businesses to prioritize marketing resources effectively.
 
 ---
 
 ## Repository Structure
 
 ```
-Chatgpt-Review-Sentiment-Analysis
+RFM-Customer-Segmentation-Analysis
 │
 ├── data
-│   └── chatgpt_reviews.csv
+│   └── rfm_data.csv
 │
 ├── notebooks
-│   └── ChatGPT Review Analysis.ipynb
+│   └── rfm_customer_segmentation.ipynb
 │
-├── images of plots
-│   ├── common problems faced by users in chatgpt.png
-│   ├── sentiment distribution of chatgpt reviews.png
-│   ├── sentiment trends over time.png
-│   ├── top common phrases in negative reviews.png
-│   └── top common phrases in positive reviews.png
+├── images
+│   ├── segment_distribution.png
+│   ├── rfm_treemap.png
+│   ├── champions_distribution.png
+│   ├── correlation_heatmap.png
+│   └── segment_comparison.png
 │
 ├── requirements.txt
 └── README.md
@@ -131,7 +138,7 @@ Chatgpt-Review-Sentiment-Analysis
 
 Possible extensions for this project include:
 
-- Using transformer-based models such as **BERT** for improved sentiment analysis
-- Applying **topic modeling** to discover deeper themes in reviews
-- Building an **interactive dashboard** for real-time review monitoring
-- Deploying the analysis pipeline as a **web application**
+- Applying **machine learning clustering algorithms** such as K-Means for customer segmentation
+- Building **customer lifetime value (CLV) prediction models**
+- Creating an **interactive marketing dashboard**
+- Integrating RFM analysis into **real-time customer analytics pipelines**
